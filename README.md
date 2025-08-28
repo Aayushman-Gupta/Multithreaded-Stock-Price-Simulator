@@ -20,8 +20,7 @@ When the WebSocket backend is unavailable, the app smartly switches to **mock da
 
 ### 📊 Full Dashboard
 ![Dashboard Preview](./demo/dashboard.png)
-
-(./demo/stock-cards.png)
+![Stock Cards](./demo/stock-cards.png)
 
 
 ## 🛠️ Tech Stack
