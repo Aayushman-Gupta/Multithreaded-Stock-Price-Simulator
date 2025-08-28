@@ -18,11 +18,11 @@ When the WebSocket backend is unavailable, the app smartly switches to **mock da
 
 ## 🖼️ Demo Preview
 
-> ⚠️ Add a screenshot or GIF here of your dashboard (press `PrtSc` or record with [LiceCap](https://www.cockos.com/licecap/)).  
+### 📊 Full Dashboard
+![Dashboard Preview](./demo/dashboard.png)
 
-![Dashboard Preview](./preview.png)
+(./demo/stock-cards.png)
 
----
 
 ## 🛠️ Tech Stack
 
