@@ -1,47 +1,90 @@
-# 📊 Live Stock Price Simulator & Dashboard
+# 🚀 Multithreaded Stock Price Simulator
 
-A **real-time stock dashboard** built with **React + Vite**, streaming live prices via **WebSockets** and visualized using **Recharts**.
-If the WebSocket server is unavailable, the app gracefully switches to **mock data mode** so the UI always stays alive.
+![C++](https://img.shields.io/badge/C++-blue.svg?style=for-the-badge&logo=c%2B%2B)
+![React](https://img.shields.io/badge/React-black.svg?style=for-the-badge&logo=react)
+![WebSockets](https://img.shields.io/badge/WebSockets-green.svg?style=for-the-badge&logo=websocket)
+![Concurrency](https://img.shields.io/badge/Multithreading-orange.svg?style=for-the-badge)
+
+A **real-time stock price simulator** built using **C++ multithreading** (Producer–Consumer model) for backend and a **React-based frontend** for visualization.
+
+The backend generates live stock price updates via **multiple producer threads**, while **consumer threads** process and broadcast data using a thread-safe queue. The frontend consumes this data over **WebSockets** and displays it with interactive charts.
+
+---
+
+## 📊 Demo Preview
+
+### 1. Real-Time Stock Price Updates
+![Live Stock Updates](frontend/public/demo/live_updates.png)
+
+### 2. Moving Average Trend Line
+![Moving Average](frontend/public/demo/moving_average.png)
+
+### 3. Colorful UI with Responsive Chart
+![Colorful UI](frontend/public/demo/ui_chart.png)
 
 ---
 
 ## ✨ Features
 
-- ⚡ **Real-time WebSocket Streaming** – Live updates for each stock in your dashboard.
-- 🎨 **Dark-Themed Modern UI** – Clean responsive cards styled with **TailwindCSS**.
-- 📈 **Interactive Charts** – Area & line charts with price curves, shaded trends, tooltips, and legends.
-- 📉 **20-Period Moving Average** – Overlayed on stock price graphs for better trend analysis.
-- 🔄 **Automatic Mock Fallback** – Backend down? The app generates realistic random stock data.
-- 📱 **Responsive Design** – Optimized for desktop, tablet, and mobile.
-
----
-
-## 🖼️ Demo Preview
-
-### 📊 Dashboard Overview
-![Dashboard Preview](./demo/dashboard.png)
-
-### 📈 Stock Cards
-![Stock Cards](./demo/stock-cards.png)
+- 🔄 **Multithreaded Backend**
+  - Producer threads simulate real-time stock price updates
+  - Consumer threads process and serve data via WebSocket
+  - Thread-safe queue ensures race-free execution using mutexes & condition variables
+- 📈 **Frontend with Charts**
+  - Real-time graph with **green/red candles**
+  - **Yellow dashed moving average** line for trends
+- 🎨 **Modern UI**
+  - Responsive and colorful design powered by **TailwindCSS + Recharts**
+- ⚡ **Mock Data Option**
+  - Can run **frontend only** with dummy stock data (no backend required)
+- 🔐 **Thread-Safe Execution**
+  - Zero race conditions with proper locking & unlocking
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- ⚛️ [React](https://reactjs.org/) (via [Vite](https://vitejs.dev/)) – Lightning-fast development
-- 🎨 [TailwindCSS](https://tailwindcss.com/) – Utility-first styling
-- 📊 [Recharts](https://recharts.org/) – Data visualization
-
 ### Backend
-- 💻 C++ Stock Simulator
-- 🔌 WebSocket server at `ws://localhost:9002`
+- **C++17**
+- **Multithreading** (std::thread, mutex, condition_variable)
+- **Producer–Consumer Model**
+- **WebSocket server**
+
+### Frontend
+- **React + Vite**
+- **TailwindCSS** for styling
+- **Recharts** for interactive charts
+- **WebSocket client**
 
 ---
 
-## 🚀 Getting Started
+## 🏗️ Architecture
 
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/your-username/stock-price-simulator.git
-cd stock-price-simulator
+```plaintext
+            ┌──────────────────────┐
+            │   Producer Threads   │
+            │  (Generate prices)   │
+            └─────────┬────────────┘
+                      │
+                      ▼
+              ┌──────────────┐
+              │   Queue Q    │  ← Thread-safe with mutex + CV
+              └──────────────┘
+                      │
+                      ▼
+            ┌──────────────────────┐
+            │   Consumer Threads   │
+            │  (Process & send)    │
+            └─────────┬────────────┘
+                      │
+                      ▼
+            ┌──────────────────────┐
+            │   WebSocket Server   │
+            └─────────┬────────────┘
+                      │
+                      ▼
+            ┌──────────────────────┐
+            │     React Frontend   │
+            │   (Charts + UI/UX)   │
+            └──────────────────────┘
+
