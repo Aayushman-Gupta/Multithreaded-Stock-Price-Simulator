@@ -14,8 +14,8 @@ The backend generates live stock price updates via **multiple producer threads**
 ## 📊 Demo Preview
 
 ### 1. Real-Time Stock Price Updates
-![Live Stock Updates](demo/Stockes_pics1.png)
-![Stock Charts](demo/Stockes_pics2.png)
+![Live Stock Updates](demo/demo/Stockes_pics1.png)
+![Stock Charts](demo/demo/Stockes_pics2.png)
 
 ---
 
