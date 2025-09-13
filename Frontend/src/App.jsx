@@ -144,7 +144,7 @@ function App() {
         {stocks.length === 0 ? (
           <div className="flex flex-col items-center justify-center min-h-64">
             <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-400 mb-6"></div>
-              <div className="text-center text-gray-300 space-y-2">
+              <div className="text-center text-gray-290 space-y-2">
               <p className="text-lg font-medium">🔗 Connecting to server...</p>
               <p className="text-sm text-gray-400">Ensure backend is running on port 9002</p>
             </div>
