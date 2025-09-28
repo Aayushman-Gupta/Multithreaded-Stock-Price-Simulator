@@ -16,6 +16,7 @@ The backend leverages a **thread pool** and a producer-consumer model to efficie
 This is the final user interface, featuring a "glassmorphism" design with live-updating charts.
 
 ![Live Stock Dashboard Preview](demo/SpM1.png)
+![Live Stock Dashboard Preview](demo/spm2.png)
 
 ---
 
